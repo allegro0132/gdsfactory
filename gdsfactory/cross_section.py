@@ -616,6 +616,138 @@ radius_rib = 20
 
 
 @xsection
+def cpw_substrate(
+    width: float = 10,
+    layer: LayerSpec = (1, 0),
+    radius: float = 10.0,
+    radius_min: float = 5,
+    **kwargs,
+) -> CrossSection:
+    """Return CPW substrate cross_section."""
+    return cross_section(
+        width=width,
+        layer=layer,
+        radius=radius,
+        radius_min=radius_min,
+        sections=(
+            Section(width=6, layer=(1, 0), offset=+8),
+            Section(width=6, layer=(1, 0), offset=-8),
+        ),
+        **kwargs,
+    )
+
+
+@xsection
+def cpw_interposer_b(
+    width: float = 10,
+    layer: LayerSpec = (1, 0),
+    radius: float = 10.0,
+    radius_min: float = 5,
+    **kwargs,
+) -> CrossSection:
+    """Return CPW interposer bottom cross_section."""
+    return cross_section(
+        width=width,
+        layer=layer,
+        radius=radius,
+        radius_min=radius_min,
+        sections=(
+            Section(width=6, layer=(6, 0), offset=+8),
+            Section(width=6, layer=(6, 0), offset=-8),
+        ),
+        **kwargs,
+    )
+
+
+@xsection
+def cpw_interposer_t(
+    width: float = 10,
+    layer: LayerSpec = (1, 0),
+    radius: float = 10.0,
+    radius_min: float = 5,
+    **kwargs,
+) -> CrossSection:
+    """Return CPW interposer top cross_section."""
+    return cross_section(
+        width=width,
+        layer=layer,
+        radius=radius,
+        radius_min=radius_min,
+        sections=(
+            Section(width=6, layer=(3, 0), offset=+8),
+            Section(width=6, layer=(3, 0), offset=-8),
+        ),
+        **kwargs,
+    )
+
+
+@xsection
+def cpw_substrate_nar(
+    width: float = 10,
+    layer: LayerSpec = (1, 0),
+    radius: float = 10.0,
+    radius_min: float = 5,
+    **kwargs,
+) -> CrossSection:
+    """Return CPW substrate narrow cross_section."""
+    return cross_section(
+        width=width,
+        layer=layer,
+        radius=radius,
+        radius_min=radius_min,
+        sections=(
+            Section(width=2.4, layer=(5, 0), offset=+3.2),
+            Section(width=2.4, layer=(5, 0), offset=-3.2),
+        ),
+        **kwargs,
+    )
+
+
+@xsection
+def cpw_interposer_b_nar(
+    width: float = 10,
+    layer: LayerSpec = (1, 0),
+    radius: float = 10.0,
+    radius_min: float = 5,
+    **kwargs,
+) -> CrossSection:
+    """Return CPW interposer bottom narrow cross_section."""
+    return cross_section(
+        width=width,
+        layer=layer,
+        radius=radius,
+        radius_min=radius_min,
+        sections=(
+            Section(width=2.4, layer=(2, 0), offset=+3.2),
+            Section(width=2.4, layer=(2, 0), offset=-3.2),
+        ),
+        **kwargs,
+    )
+
+
+@xsection
+def cpw_interposer_t_nar(
+    width: float = 10,
+    layer: LayerSpec = (1, 0),
+    radius: float = 10.0,
+    radius_min: float = 5,
+    **kwargs,
+) -> CrossSection:
+    """Return CPW interposer top narrow cross_section."""
+    return cross_section(
+        width=width,
+        layer=layer,
+        radius=radius,
+        radius_min=radius_min,
+        sections=(
+            Section(width=2.4, layer=(3, 0), offset=+3.2),
+            Section(width=2.4, layer=(3, 0), offset=-3.2),
+        ),
+        **kwargs,
+    )
+
+
+@xsection
 def strip(
     width: float = 0.5,
     layer: LayerSpec = "WG",
@@ -2649,3 +2781,5 @@ if __name__ == "__main__":
     xs2 = xs1.copy(width=10)
     assert xs2.name == xs1.name, f"{xs2.name} != {xs1.name}"
     print(xs2.name)
+    s0 = Section(width=2, layer=(1, 0))
+    print(s0.name)
